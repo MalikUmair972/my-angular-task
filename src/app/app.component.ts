@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-angular-task';
+
+  email: string = '';
+  lastName: string = '';
+  agree: boolean = false;
+  submitAttempted: boolean = false;
 }
