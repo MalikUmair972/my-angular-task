@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { SharedService } from '../shared.service';
 import {
   FormControl,
   Validators,
@@ -47,4 +48,7 @@ export class SignupComponent {
       console.log('Form is invalid');
     }
   }
+
+  constructor(private sharedService: SharedService) {}
+
 }

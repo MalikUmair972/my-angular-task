@@ -1,5 +1,5 @@
 <div class="signup no-gap p-5">
-    <div class="name d-flex flex-row justify-content-space gap-5">
+    <div class="name d-flex flex-row justify-content-space">
         <p>
             <mat-form-field appearance="fill">
                 <mat-label>First Name</mat-label>
@@ -9,7 +9,7 @@
         <p>
             <mat-form-field appearance="fill">
                 <mat-label>Last Name</mat-label>
-                <input matInput placeholder="E.x Last Name">
+                <input class="w-100" matInput placeholder="E.x Last Name">
             </mat-form-field>
         </p>
     </div>
@@ -25,47 +25,48 @@
             Email is <strong>required</strong>
         </mat-error>
     </mat-form-field>
-    <mat-form-field>
-        <mat-label>Select Gender</mat-label>
-        <mat-select disableRipple>
-            <mat-option value="1">Male</mat-option>
-            <mat-option value="2">Female</mat-option>
-        </mat-select>
-    </mat-form-field>
+    <div class="gender">
+        <mat-form-field>
+            <mat-label>Select Gender</mat-label>
+            <mat-select disableRipple>
+                <mat-option value="1">Male</mat-option>
+                <mat-option value="2">Female</mat-option>
+            </mat-select>
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Select your age</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
+        <mat-form-field>
+            <mat-label>Select your age</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
     <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
         <input type="password" matInput placeholder="Ex.Confirm Password" [formControl]="passwordControl">
         <mat-error *ngIf="passwordControl.hasError('required')">
-          Password is <strong>required</strong>
+            Password is <strong>required</strong>
         </mat-error>
         <mat-error *ngIf="passwordControl.hasError('minlength')">
-          Password must be at least 8 characters long.
+            Password must be at least 8 characters long.
         </mat-error>
-      </mat-form-field>
+    </mat-form-field>
 
-      <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width">
         <mat-label>Confirm Password</mat-label>
         <input type="password" matInput placeholder="Ex. Password" [formControl]="passwordControl">
         <mat-error *ngIf="passwordControl.hasError('required')">
-          Password is <strong>required</strong>
+            Password is <strong>required</strong>
         </mat-error>
         <mat-error *ngIf="passwordControl.hasError('minlength')">
-          Password must be at least 8 characters long.
+            Password must be at least 8 characters long.
         </mat-error>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary w-100 mt-2" type="submit"
-      [disabled]="!emailFormControl.valid || !passwordControl.valid">
-      Sign Up
+    </mat-form-field>
+
+    <button mat-raised-button color="primary w-100 mt-2" type="submit"
+        [disabled]="!emailFormControl.valid || !passwordControl.valid">
+        Sign Up
     </button>
-    <p class="mt-3">Already have an account? <a href="">Login</a></p>
+
 </div>

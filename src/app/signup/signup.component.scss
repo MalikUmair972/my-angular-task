@@ -9,6 +9,16 @@
     border-bottom-right-radius: 20px;
 }
 
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.gender {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .example-form {
     min-width: 150px;
