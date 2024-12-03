@@ -19,12 +19,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   providers: [provideNativeDateAdapter()],
 })
 export class AppComponent {
-  title = 'my-angular-task';
+  title = 'My-Form';
 
   email: string = '';
   password: string = '';
   agree: boolean = false;
   submitAttempted: boolean = false;
+  isMoved: boolean = false;
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -48,5 +49,8 @@ export class AppComponent {
     } else {
       console.log('Form is invalid');
     }
+  }
+  toggleContent() {
+    this.isMoved = !this.isMoved; 
   }
 }

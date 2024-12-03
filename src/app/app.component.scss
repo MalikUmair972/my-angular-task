@@ -1,10 +1,50 @@
 .content {
-    position: absolute;
-    padding: 50px;
-    height: 550px;
-    width: 600px;
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-    border-radius: 20px;
-    left: 80px;
-    z-index: 100;
+  position: absolute;
+  padding: 50px;
+  height: 550px;
+  width: 600px;
+  background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+  border-radius: 20px;
+  left: 80px;
+  z-index: 100;
+}
+
+
+.content.move-up {
+  transform: translateY(-100%);
+}
+
+.content.move-down {
+  transform: translateY(0);
+}
+
+.form {
+  padding: 1rem;
+
+}
+
+h1 {
+  color: #fff;
+  font-weight: 800;
+}
+
+
+
+.mat-mdc-outlined-button {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+p {
+  color: #fff;
+}
+
+.slide-left {
+  transform: translateX(101%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.content {
+  transition: transform 0.5s ease-in-out;
+  
 }

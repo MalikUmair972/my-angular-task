@@ -1,8 +1,13 @@
+<div class="form d-flex flex-column flex-md-row justify-content-center align-items-center vh-100">
+  <div class="content order-2 order-md-1 mb-4 mb-md-0  d-flex flex-column justify-content-center align-items-center"
+    [class.slide-left]="isMoved">
+    <h1> {{ isMoved ? 'Welcome to Login' : 'Welcome to Sign Up' }}</h1>
+    <p class="mt-3">{{ isMoved ? 'Dont have an account?' : 'Already have an account?' }}</p>
+    <button mat-stroked-button (click)="toggleContent()"> {{ isMoved ? 'Signup' : 'Login' }}</button>
+  </div>
+  <div class="form-container d-flex flex-row align-items-center order-1 order-md-2">
+    <app-login></app-login>
+    <app-signup></app-signup>
 
-<div class="form d-flex flex-row justify-content-center align-items-center vh-100">
-<app-login class="ml-5"></app-login>
-<app-signup class="mr-5"></app-signup>
-<div class="content">
-
-</div>
+  </div>
 </div>
