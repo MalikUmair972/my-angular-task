@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedService } from '../shared.service';
 import {
   FormControl,
   Validators,
@@ -45,5 +46,11 @@ export class LoginComponent {
     } else {
       console.log('Form is invalid');
     }
+  }
+
+  constructor(private sharedService: SharedService) {}
+
+  goToSignUp() {
+    this.sharedService.moveDiv('signup');
   }
 }
