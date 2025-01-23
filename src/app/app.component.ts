@@ -53,4 +53,5 @@ export class AppComponent {
   toggleContent() {
     this.isMoved = !this.isMoved; 
   }
+
 }
