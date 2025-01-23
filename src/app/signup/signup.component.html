@@ -1,72 +1,83 @@
-<div class="signup no-gap p-5">
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup no-gap p-5">
     <div class="name d-flex flex-row justify-content-space">
-        <p>
-            <mat-form-field appearance="fill">
-                <mat-label>First Name</mat-label>
-                <input matInput placeholder="E.x First Name">
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="fill">
-                <mat-label>Last Name</mat-label>
-                <input class="w-100" matInput placeholder="E.x Last Name">
-            </mat-form-field>
-        </p>
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="E.x First Name" />
+            <mat-error *ngIf="signupForm.get('firstName')?.hasError('required')">
+                First name is <strong>required</strong>.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="E.x Last Name" />
+            <mat-error *ngIf="signupForm.get('lastName')?.hasError('required')">
+                Last name is <strong>required</strong>.
+            </mat-error>
+        </mat-form-field>
     </div>
-    <!-- Email Field -->
+
     <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-            placeholder="Ex. john@example.com">
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Please enter a valid email address
+        <input type="email" matInput formControlName="email" placeholder="Ex. john@example.com" />
+        <mat-error *ngIf="signupForm.get('email')?.hasError('required')">
+            Email is <strong>required</strong>.
         </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-            Email is <strong>required</strong>
+        <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
+            Please enter a valid email address.
         </mat-error>
     </mat-form-field>
+
     <div class="gender">
         <mat-form-field>
             <mat-label>Select Gender</mat-label>
-            <mat-select disableRipple>
-                <mat-option value="1">Male</mat-option>
-                <mat-option value="2">Female</mat-option>
+            <mat-select formControlName="gender" disableRipple>
+                <mat-option value="male">Male</mat-option>
+                <mat-option value="female">Female</mat-option>
             </mat-select>
+            <mat-error *ngIf="signupForm.get('gender')?.hasError('required')">
+                Gender is <strong>required</strong>.
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Select your age</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" formControlName="age" />
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="signupForm.get('age')?.hasError('required')">
+                Age is <strong>required</strong>.
+            </mat-error>
         </mat-form-field>
     </div>
+
     <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input type="password" matInput placeholder="Ex.Confirm Password" [formControl]="passwordControl">
-        <mat-error *ngIf="passwordControl.hasError('required')">
-            Password is <strong>required</strong>
+        <input type="password" matInput formControlName="password" placeholder="Ex. Password" />
+        <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
+            Password is <strong>required</strong>.
         </mat-error>
-        <mat-error *ngIf="passwordControl.hasError('minlength')">
+        <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">
             Password must be at least 8 characters long.
         </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-label>Confirm Password</mat-label>
-        <input type="password" matInput placeholder="Ex. Password" [formControl]="passwordControl">
-        <mat-error *ngIf="passwordControl.hasError('required')">
-            Password is <strong>required</strong>
+        <input type="password" matInput formControlName="confirmPassword" placeholder="Ex. Confirm Password" />
+        <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('required')">
+            Confirm Password is <strong>required</strong>.
         </mat-error>
-        <mat-error *ngIf="passwordControl.hasError('minlength')">
-            Password must be at least 8 characters long.
+        <mat-error *ngIf="
+          signupForm.get('confirmPassword')?.hasError('minlength')
+        ">
+            Passwords do not match.
         </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary w-100 mt-2" type="submit"
-        [disabled]="!emailFormControl.valid || !passwordControl.valid">
+    <button mat-raised-button color="primary" class="w-100 mt-2" type="submit" [disabled]="!signupForm.valid"
+        (click)="onSubmit()">
         Sign Up
     </button>
-
-</div>
+</form>

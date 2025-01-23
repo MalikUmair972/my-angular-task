@@ -1,54 +1,38 @@
 import { Component } from '@angular/core';
-import {provideNativeDateAdapter} from '@angular/material/core';
-import { SharedService } from '../shared.service';
-import {
-  FormControl,
-  Validators,
-} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null): boolean {
-    return !!(control && control.invalid && (control.dirty || control.touched));
-  }
-}
-
+import { FormGroup, FormControl, Validators, AbstractControl  } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
-  email: string = '';
-  password: string = '';
-  agree: boolean = false;
-  submitAttempted: boolean = false;
+  signupForm: FormGroup;
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(8), 
-  ]);
-
-  matcher = new MyErrorStateMatcher();
-
-  onSubmit() {
-    this.submitAttempted = true;
-
-    if (this.emailFormControl.valid && this.passwordControl.valid) {
-      console.log('Form Submitted', {
-        email: this.email,
-        password: this.password,
-      });
-    } else {
-      console.log('Form is invalid');
-    }
+  constructor() {
+    this.signupForm = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      gender: new FormControl('', Validators.required),
+      age: new FormControl('', Validators.required),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+      ]),
+    });
   }
 
-  constructor(private sharedService: SharedService) {}
-
+  passwordMatchValidator(group: AbstractControl): { [key: string]: boolean } | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { passwordMismatch: true };
+  }
+  onSubmit() {
+   console.log(this.signupForm.value);
+  }
 }
